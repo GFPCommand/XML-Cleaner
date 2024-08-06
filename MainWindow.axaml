@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+        x:Class="XML_Cleaner.MainWindow"
+        Title="XML Cleaner"
+        Icon="Assets/logo.ico">
+    <Grid ShowGridLines="True" Margin="30, 10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Background="#f0f0f0"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="3">
+            <TextBlock Text="File path..." Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Height="30"/>
+        </Border>
+        
+        <Button Grid.Row="0" Grid.Column="1" Width="30" Height="30" Margin="5">Load file</Button>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Grid.ColumnSpan="2">
+            text
+        </TextBlock>
+        <ScrollViewer Grid.Row="2" Grid.Column="0" Margin="5" Height="200" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <StackPanel>
+                <ListBox>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                    <ListBoxItem/>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
