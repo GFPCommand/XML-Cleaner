@@ -2,13 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+        mc:Ignorable="d" Width="600" Height="500"
         x:Class="XML_Cleaner.MainWindow"
         Title="XML Cleaner"
-        Icon="Assets/logo.ico">
-    <Grid ShowGridLines="True" Margin="30, 10">
+        Icon="Assets/logo.ico"
+        Background="White"
+        MinWidth="600"
+        MinHeight="500">
+    <Grid ShowGridLines="False" Margin="30, 10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -24,27 +26,83 @@
         <Border Background="#f0f0f0"
                 BorderBrush="Black"
                 BorderThickness="1"
-                CornerRadius="3">
-            <TextBlock Text="File path..." Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Height="30"/>
+                CornerRadius="3"
+                Grid.ColumnSpan="2"
+                Margin="20 10 50 10">
+            <TextBlock Text="File path..."
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Foreground="Black"
+                       Margin="10"
+                       Height="20"
+                       Grid.ColumnSpan="2" />
         </Border>
         
-        <Button Grid.Row="0" Grid.Column="1" Width="30" Height="30" Margin="5">Load file</Button>
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Grid.ColumnSpan="2">
-            text
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                Width="40"
+                Height="40"
+                Margin="5"
+                HorizontalAlignment="Right">
+                <Image Source="Assets/folder.png"/>
+        </Button>
+
+        <TextBlock x:Name="MainFileInfo"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="10"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="2"
+                   HorizontalAlignment="Left"
+                   Width="NaN"
+                   TextWrapping="Wrap">
+            File info
         </TextBlock>
-        <ScrollViewer Grid.Row="2" Grid.Column="0" Margin="5" Height="200" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <StackPanel>
-                <ListBox>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                    <ListBoxItem/>
-                </ListBox>
-            </StackPanel>
-        </ScrollViewer>
+
+        <!-- <ScrollViewer Grid.Row="3" Grid.Column="0" Margin="5" Height="NaN" Grid.RowSpan="2" Grid.ColumnSpan="2">-->
+            <!-- <DataGrid Margin="20"
+                      CanUserResizeColumns="True"
+                      IsReadOnly="True"
+                      GridLinesVisibility="All"
+                      BorderThickness="1"
+                      BorderBrush="Gray"
+                      Grid.Row="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      ItemsSource="Element">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tag" Binding="{Binding XPath}"/>
+                        <DataGridTextColumn Header="Condition" Binding="{Binding Condition}"/>
+                        <DataGridTextColumn Header="Values" Binding="{Binding Values}"/>
+                    </DataGrid.Columns>
+            </DataGrid> -->
+        <!-- </ScrollViewer> -->
+
+        <TextBlock x:Name="ModifiedFileInfo" 
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   Grid.ColumnSpan="2"
+                   Margin="5">
+            Modified file info
+        </TextBlock>
+
+        <Button Click="SaveButton_onClick"
+                Grid.Row="1"
+                Grid.Column="2" 
+                Width="50"
+                Height="30"
+                Margin="5"
+                HorizontalAlignment="Center"
+                Content="Save"/>
+
+        <Button Click="SaveAsButton_onClick"
+                Grid.Row="1"
+                Grid.Column="3"
+                Width="70"
+                Height="30"
+                Margin="5"
+                HorizontalAlignment="Center"
+                Content="Save as"/>
     </Grid>
 </Window>
