@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:local="clr-namespace:XML_Cleaner.ViewModel"
         mc:Ignorable="d" Width="600" Height="500"
         x:Class="XML_Cleaner.MainWindow"
         Title="XML Cleaner"
@@ -9,7 +10,7 @@
         Background="White"
         MinWidth="600"
         MinHeight="500">
-    <Grid ShowGridLines="False" Margin="30, 10">
+    <Grid ShowGridLines="True" Margin="30, 10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -44,7 +45,8 @@
                 Width="40"
                 Height="40"
                 Margin="5"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Right"
+				Command="{Binding OpenFile}">
                 <Image Source="Assets/folder.png"/>
         </Button>
 
@@ -60,6 +62,12 @@
             File info
         </TextBlock>
 
+		<DataGrid>
+			<DataGrid.Columns>
+				<DataGridTextColumn/>
+			</DataGrid.Columns>
+		</DataGrid>
+		
         <!-- <ScrollViewer Grid.Row="3" Grid.Column="0" Margin="5" Height="NaN" Grid.RowSpan="2" Grid.ColumnSpan="2">-->
             <!-- <DataGrid Margin="20"
                       CanUserResizeColumns="True"
