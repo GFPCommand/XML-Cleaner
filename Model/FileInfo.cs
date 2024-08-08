@@ -1,4 +1,6 @@
-public class FileInfo 
+using System.ComponentModel;
+
+public class FileInfo
 {
     // file path with file name at the end of the path string
     public string? FullPath { get; set; }

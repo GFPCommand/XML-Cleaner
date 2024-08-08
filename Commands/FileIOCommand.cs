@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace XML_Cleaner.Commands
@@ -13,6 +9,7 @@ namespace XML_Cleaner.Commands
 
 		public bool CanExecute(object? parameter)
 		{
+			CanExecuteChanged?.Invoke(null, new EventArgs());
 			throw new NotImplementedException();
 		}
 
