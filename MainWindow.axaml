@@ -10,21 +10,87 @@
         Background="White"
         MinWidth="600"
         MinHeight="500">
+
     <Grid ShowGridLines="True" Margin="30, 10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+            <ColumnDefinition Width="9*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Border Background="#f0f0f0"
+        <Grid ShowGridLines="False" Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border x:Name="FilePathElement"
+                    Background="#f0f0f0"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Margin="10">
+                <TextBlock Text="File path..."
+                            VerticalAlignment="Center"
+                            Foreground="Black"
+                            Margin="10"/>
+            </Border>
+            <!-- Open file command -->
+            <Button x:Name="OpenFileButton"
+                    Grid.Column="1"
+                    Width="40"
+                    Height="40"
+                    Margin="5"
+                    HorizontalAlignment="Left">
+                <Image Source="Assets/folder.png"/>
+            </Button>
+        </Grid>
+
+        <!-- 2nd row -->
+        <!-- info block -->
+
+        <Border Grid.Row="1"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Margin="10">
+
+        </Border>
+
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Margin="10">
+
+        </Border>
+
+        <!-- 3rd row -->
+        <!-- main action block -->
+
+        <Border Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Margin="10">
+
+        </Border>
+
+        <Border Grid.Row="2"
+                Grid.Column="1"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Margin="10">
+
+        </Border>
+
+        <!-- <Border Background="#f0f0f0"
                 BorderBrush="Black"
                 BorderThickness="1"
                 CornerRadius="3"
@@ -65,7 +131,7 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn/>
 			</DataGrid.Columns>
-		</DataGrid>
+		</DataGrid> -->
 		
         <!-- <ScrollViewer Grid.Row="3" Grid.Column="0" Margin="5" Height="NaN" Grid.RowSpan="2" Grid.ColumnSpan="2">-->
             <!-- <DataGrid Margin="20"
@@ -86,7 +152,7 @@
             </DataGrid> -->
         <!-- </ScrollViewer> -->
 
-        <TextBlock x:Name="ModifiedFileInfo" 
+        <!-- <TextBlock x:Name="ModifiedFileInfo" 
                    Grid.Row="0"
                    Grid.Column="2"
                    Grid.ColumnSpan="2"
@@ -122,7 +188,7 @@
                 <TextBox AcceptsReturn="True"
                          TextWrapping="Wrap"/>
         </Border>
-        </StackPanel>
+        </StackPanel> -->
     </Grid>
 </Window>
 <!-- TODO -->
