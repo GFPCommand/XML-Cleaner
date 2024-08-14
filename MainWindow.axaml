@@ -3,13 +3,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:local="clr-namespace:XML_Cleaner.ViewModel"
-        mc:Ignorable="d" Width="600" Height="500"
+        mc:Ignorable="d"
+        Width="600" Height="500"
         x:Class="XML_Cleaner.MainWindow"
         Title="XML Cleaner"
         Icon="Assets/logo.ico"
-        Background="White"
-        MinWidth="600"
-        MinHeight="500">
+        Background="White">
+
+<!-- CanResize="False" -->
 
     <Grid ShowGridLines="True" Margin="30, 10">
         <Grid.ColumnDefinitions>
@@ -22,13 +23,15 @@
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <!-- 1st row -->
+        <!-- open file -->
+
         <Grid ShowGridLines="False" Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -82,17 +85,32 @@
 				</Grid.ColumnDefinitions>
 
 				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
+					<RowDefinition Height="3*"/>
+					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
 				
 				<TextBlock x:Name="cutFileInfo"
 					   Text=""
 					   TextWrapping="Wrap"
-					   Margin="10"/>
+					   Margin="10"
+                       Grid.Column=""/>
+
+                <Button Grid.Row="1"
+                        Grid.Column="0"
+                        Content="Save"
+                        Width="100"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                </Button>
+
+                <Button Grid.Row="1"
+                        Grid.Column="1"
+                        Content="Save as"
+                        Width="100"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                </Button>
 			</Grid>
-			
-			
         </Border>
 
         <!-- 3rd row -->
@@ -102,11 +120,6 @@
                 BorderBrush="Black"
                 BorderThickness="1"
                 Margin="10">
-
-			<DataGrid x:Name="removingElementsTable"
-					  HeadersVisibility="Column">
-				
-			</DataGrid>
         </Border>
 
         <Border Grid.Row="2"
@@ -115,107 +128,14 @@
                 BorderThickness="1"
                 Margin="10">
 
+                <StackPanel>
+                    <TextBlock Text=""
+				               TextWrapping="Wrap"
+				               Margin="10"/>
+                               
+                </StackPanel>
+
         </Border>
-
-        <!-- <Border Background="#f0f0f0"
-                BorderBrush="Black"
-                BorderThickness="1"
-                CornerRadius="3"
-                Grid.ColumnSpan="2"
-                Margin="20 10 50 10">
-            <TextBlock Text="File path..."
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       Foreground="Black"
-                       Margin="10"
-                       Height="20"
-                       Grid.ColumnSpan="2" />
-        </Border>
-        
-        <Button Grid.Row="0"
-                Grid.Column="1"
-                Width="40"
-                Height="40"
-                Margin="5"
-                HorizontalAlignment="Right">
-                <Image Source="Assets/folder.png"/>
-        </Button>
-
-        <TextBlock x:Name="MainFileInfo"
-                   Grid.Row="1"
-                   Grid.Column="0"
-                   Margin="10"
-                   Grid.ColumnSpan="2"
-                   Grid.RowSpan="2"
-                   HorizontalAlignment="Left"
-                   Width="NaN"
-                   TextWrapping="Wrap">
-            File info
-        </TextBlock>
-
-		<DataGrid>
-			<DataGrid.Columns>
-				<DataGridTextColumn/>
-			</DataGrid.Columns>
-		</DataGrid> -->
-		
-        <!-- <ScrollViewer Grid.Row="3" Grid.Column="0" Margin="5" Height="NaN" Grid.RowSpan="2" Grid.ColumnSpan="2">-->
-            <!-- <DataGrid Margin="20"
-                      CanUserResizeColumns="True"
-                      IsReadOnly="True"
-                      GridLinesVisibility="All"
-                      BorderThickness="1"
-                      BorderBrush="Gray"
-                      Grid.Row="3"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="2"
-                      ItemsSource="Element">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Tag" Binding="{Binding XPath}"/>
-                        <DataGridTextColumn Header="Condition" Binding="{Binding Condition}"/>
-                        <DataGridTextColumn Header="Values" Binding="{Binding Values}"/>
-                    </DataGrid.Columns>
-            </DataGrid> -->
-        <!-- </ScrollViewer> -->
-
-        <!-- <TextBlock x:Name="ModifiedFileInfo" 
-                   Grid.Row="0"
-                   Grid.Column="2"
-                   Grid.ColumnSpan="2"
-                   Margin="5">
-            Modified file info
-        </TextBlock>
-
-        <Button Grid.Row="1"
-                Grid.Column="2" 
-                Width="50"
-                Height="30"
-                Margin="5"
-                HorizontalAlignment="Center"
-                Content="Save"/>
-
-        <Button Grid.Row="1"
-                Grid.Column="3"
-                Width="70"
-                Height="30"
-                Margin="5"
-                HorizontalAlignment="Center"
-                Content="Save as"/>
-
-        <StackPanel Grid.Row="3"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    MaxHeight="NaN">
-            <Border BorderBrush="Black"
-                    BorderThickness="1"
-                    CornerRadius="3"
-                    Grid.ColumnSpan="2"
-                    Margin="5">
-                <TextBox AcceptsReturn="True"
-                         TextWrapping="Wrap"/>
-        </Border>
-        </StackPanel> -->
     </Grid>
 </Window>
 <!-- TODO -->
