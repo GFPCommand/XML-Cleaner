@@ -12,7 +12,7 @@
 
 <!-- CanResize="False" -->
 
-    <Grid ShowGridLines="True" Margin="30, 10">
+    <Grid ShowGridLines="False" Margin="30, 10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"></ColumnDefinition>
             <ColumnDefinition Width="9*"></ColumnDefinition>
@@ -38,7 +38,7 @@
             <Border x:Name="FilePathElement"
                     Background="#f0f0f0"
                     BorderBrush="Black"
-                    BorderThickness="1"
+                    BorderThickness="0"
                     CornerRadius="3"
                     Margin="10">
                 <TextBlock Text="File path..."
@@ -62,11 +62,11 @@
 
         <Border Grid.Row="1"
                 BorderBrush="Black"
-                BorderThickness="1"
+                BorderThickness="0"
                 Margin="10">
 
 			<TextBlock x:Name="fileInfo"
-					   Text=""
+					   Text="fileInfo"
 					   TextWrapping="Wrap"
 					   Margin="10"/>
 			
@@ -75,7 +75,7 @@
         <Border Grid.Row="1"
                 Grid.Column="1"
                 BorderBrush="Black"
-                BorderThickness="1"
+                BorderThickness="0"
                 Margin="10">
 
 			<Grid>
@@ -90,7 +90,7 @@
 				</Grid.RowDefinitions>
 				
 				<TextBlock x:Name="cutFileInfo"
-					   Text=""
+					   Text="newFileInfo"
 					   TextWrapping="Wrap"
 					   Margin="10"
                        Grid.Column=""/>
@@ -118,26 +118,62 @@
 
         <Border Grid.Row="2"
                 BorderBrush="Black"
-                BorderThickness="1"
+                BorderThickness="0"
                 Margin="10">
+
+			<DataGrid>
+				
+			</DataGrid>
         </Border>
 
         <Border Grid.Row="2"
                 Grid.Column="1"
                 BorderBrush="Black"
-                BorderThickness="1"
+                BorderThickness="0"
                 Margin="10">
 
                 <StackPanel>
-                    <TextBlock Text=""
+                    <TextBlock Text="123"
 				               TextWrapping="Wrap"
 				               Margin="10"/>
-                               
+					
+					<Grid Margin="10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+
+						<Button Grid.Column="0"
+								Content="Add"
+								HorizontalAlignment="Center"
+								Width="100"
+								HorizontalContentAlignment="Center">
+						</Button>
+						
+						<Button Grid.Column="1"
+								Content="Remove"
+								HorizontalAlignment="Center"
+								Width="100"
+								HorizontalContentAlignment="Center">
+						</Button>
+					</Grid>
+
+					<Button Content="Start clearing"
+							Margin="10"
+							HorizontalAlignment="Center"
+							Width="200"
+							HorizontalContentAlignment="Center">
+					</Button>
+
+					<ProgressBar Width="250"
+								 Height="10">
+					</ProgressBar>
                 </StackPanel>
 
         </Border>
     </Grid>
 </Window>
+
 <!-- TODO -->
 <!-- rebuild layout with inner grids -->
 <!-- build 2 main columns, which contains load and save data controllers -->
