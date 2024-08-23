@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XML Cleaner", "XML Cleaner.csproj", "{6698A430-4810-4883-9098-F56C58BB65A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XML Cleaner", "XML Cleaner.csproj", "{AF752A2A-4C2E-4082-A86B-35265D7A4D15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6698A430-4810-4883-9098-F56C58BB65A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6698A430-4810-4883-9098-F56C58BB65A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6698A430-4810-4883-9098-F56C58BB65A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6698A430-4810-4883-9098-F56C58BB65A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF752A2A-4C2E-4082-A86B-35265D7A4D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF752A2A-4C2E-4082-A86B-35265D7A4D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF752A2A-4C2E-4082-A86B-35265D7A4D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF752A2A-4C2E-4082-A86B-35265D7A4D15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FD0E5987-DF3C-4AC7-8C14-128381D2A710}
+		SolutionGuid = {1A2B224D-F843-4F5C-8335-17290CAA30C2}
 	EndGlobalSection
 EndGlobal
