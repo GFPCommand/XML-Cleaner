@@ -1,4 +1,4 @@
-using System.ComponentModel;
+namespace XML_Cleaner.Model;
 
 public class FileInfo
 {

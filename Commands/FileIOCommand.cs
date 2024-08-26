@@ -9,8 +9,8 @@ namespace XML_Cleaner.Commands
 			Debug.WriteLine("Open file");
 		}
 
-		public void SaveFile(){
-			Debug.WriteLine("Save file");
+		public void SaveFile(bool isSaveAs){
+			Debug.WriteLine(isSaveAs ? "Save file as" : "Save file");
 		}
 	}
 }

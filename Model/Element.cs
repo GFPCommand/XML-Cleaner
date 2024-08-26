@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+namespace XML_Cleaner.Model;
+
 public class Element
 {
     public string? XPath { get; set; }

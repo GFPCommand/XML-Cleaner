@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.IO;
 using System.Reactive;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
@@ -11,7 +10,7 @@ class MainWindowViewModel : INotifyPropertyChanged
 {
   public ReactiveCommand<Unit, Unit> FileOpenCommand {get;}
 
-  public ReactiveCommand<Unit, Unit> FileSaveCommand {get;}
+  public ReactiveCommand<bool, Unit> FileSaveCommand {get;}
 
   FileIOCommand FileIO = new();
 
@@ -20,7 +19,7 @@ class MainWindowViewModel : INotifyPropertyChanged
   public MainWindowViewModel()
   {
     FileOpenCommand = ReactiveCommand.Create(FileIO.OpenFile);
-    FileSaveCommand = ReactiveCommand.Create(FileIO.SaveFile);
+    FileSaveCommand = ReactiveCommand.Create<bool>(FileIO.SaveFile);
   }
 
 	protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = "") {
