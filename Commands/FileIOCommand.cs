@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Windows.Input;
+using System.Diagnostics;
 
 namespace XML_Cleaner.Commands
 {
-	internal class FileIOCommand : ICommand
+	public class FileIOCommand
 	{
-		public event EventHandler? CanExecuteChanged;
-
-		public bool CanExecute(object? parameter)
-		{
-			CanExecuteChanged?.Invoke(null, new EventArgs());
-			throw new NotImplementedException();
+		public void OpenFile(){
+			Debug.WriteLine("Open file");
 		}
 
-		public void Execute(object? parameter)
-		{
-			throw new NotImplementedException();
+		public void SaveFile(){
+			Debug.WriteLine("Save file");
 		}
 	}
 }
