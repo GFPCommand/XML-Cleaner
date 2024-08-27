@@ -10,4 +10,6 @@ public class FileInfo
     public long FileSize  { get; set; }
     // file name
     public string? FileName { get; set; }
+    // file content
+    public string? FileContent { get; set; }
 }

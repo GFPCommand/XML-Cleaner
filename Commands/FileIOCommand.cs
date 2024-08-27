@@ -4,6 +4,9 @@ namespace XML_Cleaner.Commands
 {
 	public class FileIOCommand
 	{
+
+		// write class file manager
+		// commands must call functions from file manager
 		public void OpenFile()
 		{
 			Debug.WriteLine("Open file");
@@ -15,5 +18,3 @@ namespace XML_Cleaner.Commands
 		}
 	}
 }
-
-// https://docs.avaloniaui.net/docs/basics/user-interface/file-dialogs

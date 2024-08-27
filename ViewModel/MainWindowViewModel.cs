@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using Avalonia.Controls;
+using Avalonia.Input;
+using ReactiveUI;
 using System.ComponentModel;
 using System.Reactive;
 using System.Runtime.CompilerServices;
