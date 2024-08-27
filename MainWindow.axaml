@@ -94,10 +94,10 @@
 				</Grid.RowDefinitions>
 				
 				<TextBlock x:Name="cutFileInfo"
-					   Text="newFileInfo"
-					   TextWrapping="Wrap"
-					   Margin="10"
-                       Grid.Column=""/>
+					       Text="newFileInfo"
+					       TextWrapping="Wrap"
+					       Margin="10"
+                           Grid.Column=""/>
 
                 <Button Grid.Row="1"
                         Grid.Column="0"
@@ -170,16 +170,41 @@
 						</Button>
 					</Grid>
 
-					<Button Content="Start clearing"
-							Margin="10"
-							HorizontalAlignment="Center"
-							Width="200"
-							HorizontalContentAlignment="Center">
-					</Button>
+					<Grid Margin="10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="5*"/>
+							<ColumnDefinition Width="2*"/>
+						</Grid.ColumnDefinitions>
 
-					<ProgressBar Width="250"
-								 Height="10">
+						<Button Grid.Column="0"
+							    Content="Start clearing"
+							    Width="190"
+								Margin="15 0 0 0"
+							    HorizontalContentAlignment="Center"
+								IsEnabled="True">
+						</Button>
+
+						<Button Grid.Column="1"
+								Width="30"
+								Height="30"
+								Margin="0 0 15 0"
+								HorizontalAlignment="Right"
+								IsEnabled="False">
+							<Image Source="Assets/cross.png"/>
+						</Button>
+					</Grid>
+					
+					<ProgressBar x:Name="clearingProgress"
+						        Width="250"
+								 Height="10"
+								 Margin="0 10 0 0">
 					</ProgressBar>
+
+					<TextBlock x:Name="progressStats"
+					           Text="0%"
+					           TextWrapping="Wrap"
+					           Margin="10"
+							   HorizontalAlignment="Center"/>
                 </StackPanel>
 
         </Border>
