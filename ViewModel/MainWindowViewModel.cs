@@ -1,22 +1,17 @@
-﻿using Avalonia.Controls;
-using Avalonia.Input;
-using ReactiveUI;
-using System.ComponentModel;
+﻿using ReactiveUI;
 using System.Reactive;
-using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using XML_Cleaner.Commands;
 
 namespace XML_Cleaner.ViewModel;
 
-class MainWindowViewModel : INotifyPropertyChanged
+class MainWindowViewModel
 {
 	public FileIOCommand FileIO_command = new();
 
 	public ElementClearingCommand ElementClearing_command = new();
 
-	public event PropertyChangedEventHandler? PropertyChanged;
-
-	public ReactiveCommand<Unit, Unit> FileOpenCommand { get; }
+	public ReactiveCommand<Unit, Task> FileOpenCommand { get; }
 	public ReactiveCommand<bool, Unit> FileSaveCommand { get; }
 
 	public ReactiveCommand<Unit, Unit> ClearExtraElementsCommand { get; }
@@ -27,11 +22,8 @@ class MainWindowViewModel : INotifyPropertyChanged
 		FileOpenCommand = ReactiveCommand.Create(FileIO_command.OpenFile);
 		FileSaveCommand = ReactiveCommand.Create<bool>(FileIO_command.SaveFile);
 
+		// add isvalid fields for commands for defining of executing of it
 		ClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.ClearExtraElements);
 		StopClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.StopClearingExtraElements);
-	}
-
-	protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = "") {
-		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
 }
