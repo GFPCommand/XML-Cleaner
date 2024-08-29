@@ -68,23 +68,56 @@
                 BorderThickness="1"
 				Margin="10">
 
-            <StackPanel>
-                <TextBlock x:Name="fileName"
-					       Text="fileName"
-                           TextWrapping="Wrap"
-                           Margin="10"/>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="filePath"
-                           Text="filePath"
-                           TextWrapping="Wrap"
-                           Margin="10"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                <TextBlock x:Name="fileSize"
-                           Text="fileSize"
-                           TextWrapping="Wrap"
-                           Margin="10"/>
-            </StackPanel>
-			
+                    <!-- 1st row -->
+
+                    <TextBlock Grid.Column="0"
+                               Text="Имя файла: "
+                               TextWrapping="Wrap"/>
+
+                    <TextBlock x:Name="fileName"
+                               Grid.Column="1"
+					           Text="{Binding filename}"
+                               TextWrapping="Wrap"/>
+
+                    <!-- 2nd row -->
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="1"
+                               Text="Путь к файлу: "
+                               TextWrapping="Wrap"/>
+
+                    <TextBlock x:Name="filePath"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding filepath}"
+                               TextWrapping="Wrap"/>
+
+                    <!-- 3rd row -->
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="2"
+                               Text="Путь к файлу: "
+                               TextWrapping="Wrap"/>
+
+                    <TextBlock x:Name="fileSize"
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               Text="{Binding filesize}"
+                               TextWrapping="Wrap"/>
+                </Grid>
+                
         </Border>
 
         <Border Grid.Row="1"
