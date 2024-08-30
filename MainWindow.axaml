@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		xmlns:local="clr-namespace:XML_Cleaner.ViewModel"
         xmlns:vm="clr-namespace:XML_Cleaner.ViewModel"
         x:DataType="vm:MainWindowViewModel"
@@ -37,13 +38,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Border x:Name="FilePathElement"
-                    Background="#f0f0f0"
+            <Border Background="#f0f0f0"
                     BorderBrush="Black"
                     BorderThickness="0"
                     CornerRadius="3"
                     Margin="10">
-                <TextBlock Text="File path..."
+                <TextBlock Text="{Binding FilePath}"
                             VerticalAlignment="Center"
                             Foreground="Black"
                             Margin="10"/>
@@ -68,11 +68,42 @@
                 BorderThickness="1"
 				Margin="10">
 
-			<TextBlock x:Name="fileInfo"
-					   Text="fileInfo"
-					   TextWrapping="Wrap"
-					   Margin="10"/>
-			
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!-- 1st row -->
+
+                    <TextBlock Grid.Column="0"
+                               Text="Имя файла: "
+                               TextWrapping="Wrap"/>
+
+                    <TextBlock x:Name="fileName"
+                               Grid.Column="1"
+					           Text="{Binding FileName}"
+                               TextWrapping="Wrap"/>
+
+                    <!-- 3rd row -->
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="2"
+                               Text="Размер файла: "
+                               TextWrapping="Wrap"/>
+
+                    <TextBlock x:Name="fileSize"
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               Text="{Binding FileSize}"
+                               TextWrapping="Wrap"/>
+                </Grid>
+                
         </Border>
 
         <Border Grid.Row="1"
@@ -93,17 +124,21 @@
 				</Grid.RowDefinitions>
 				
 				<TextBlock x:Name="cutFileInfo"
-					   Text="newFileInfo"
-					   TextWrapping="Wrap"
-					   Margin="10"
-                       Grid.Column=""/>
+					       Text="newFileInfo"
+					       TextWrapping="Wrap"
+					       Margin="10"
+                           Grid.Column=""/>
 
                 <Button Grid.Row="1"
                         Grid.Column="0"
                         Content="Save"
                         Width="100"
                         HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center">
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding FileSaveCommand}">
+                    <Button.CommandParameter>
+                        <sys:Boolean>False</sys:Boolean>
+                    </Button.CommandParameter>
                 </Button>
 
                 <Button Grid.Row="1"
@@ -111,7 +146,11 @@
                         Content="Save as"
                         Width="100"
                         HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center">
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding FileSaveCommand}">
+                    <Button.CommandParameter>
+                        <sys:Boolean>True</sys:Boolean>
+                    </Button.CommandParameter>
                 </Button>
 			</Grid>
         </Border>
@@ -161,26 +200,48 @@
 						</Button>
 					</Grid>
 
-					<Button Content="Start clearing"
-							Margin="10"
-							HorizontalAlignment="Center"
-							Width="200"
-							HorizontalContentAlignment="Center">
-					</Button>
+					<Grid Margin="10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="5*"/>
+							<ColumnDefinition Width="2*"/>
+						</Grid.ColumnDefinitions>
 
-					<ProgressBar Width="250"
-								 Height="10">
+						<Button Grid.Column="0"
+							    Content="Start clearing"
+							    Width="190"
+								Margin="15 0 0 0"
+							    HorizontalContentAlignment="Center"
+								IsEnabled="True"
+                                Command="{Binding ClearExtraElementsCommand}">
+						</Button>
+
+						<Button Grid.Column="1"
+								Width="30"
+								Height="30"
+								Margin="0 0 15 0"
+								HorizontalAlignment="Right"
+								IsEnabled="False"
+                                Command="{Binding ClearExtraElementsCommand}">
+							<Image Source="Assets/cross.png"/>
+						</Button>
+					</Grid>
+					
+					<ProgressBar x:Name="clearingProgress"
+						        Width="250"
+								 Height="10"
+								 Margin="0 10 0 0">
 					</ProgressBar>
+
+					<TextBlock x:Name="progressStats"
+					           Text="0%"
+					           TextWrapping="Wrap"
+					           Margin="10"
+							   HorizontalAlignment="Center"/>
                 </StackPanel>
 
         </Border>
     </Grid>
 </Window>
-
-<!-- TODO -->
-<!-- rebuild layout with inner grids -->
-<!-- build 2 main columns, which contains load and save data controllers -->
-<!-- each zone contains inner grid with any elements -->
 
 <!-- AutoSize in dependency of parent element: https://stackoverflow.com/questions/30380305/binding-listbox-maxheight-to-parent-actual -->
 <!-- MVVM helpful links -->
