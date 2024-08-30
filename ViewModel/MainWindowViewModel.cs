@@ -11,17 +11,17 @@ public class MainWindowViewModel : ViewModelBase
 	private bool _canClear;
 	private bool _canStopClear;
 
-	private ulong _fileSize;
+	private string _fileSize = "0 Kb";
 
-	private string _fileName = string.Empty;
-	private string _filePath = string.Empty;
+	private string _fileName = "-";
+	private string _filePath = "File path...";
 
 	public string FileName { 
 		get { return _fileName; }
 		set { this.RaiseAndSetIfChanged(ref _fileName, value); }
 	}
 
-	public ulong FileSize {
+	public string FileSize {
 		get { return _fileSize; }
 		set { this.RaiseAndSetIfChanged(ref _fileSize, value); }
 	}

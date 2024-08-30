@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using XML_Cleaner.Model;
 using XML_Cleaner.ViewModel;
-
 namespace XML_Cleaner.Commands;
 
 public class FileIOCommand
@@ -37,7 +36,8 @@ public class FileIOCommand
 
             _mainVM.FileName = file.Name;
             _mainVM.FilePath = file.Path.LocalPath;
-            _mainVM.FileSize = (ulong)(await file.GetBasicPropertiesAsync()).Size! / 1024;
+            var value = Math.Ceiling((double)(await file.GetBasicPropertiesAsync()).Size! / 1024).ToString();
+            _mainVM.FileSize = value + " Kb";
 
             await using var readStream = await file.OpenReadAsync();
             using var reader = new StreamReader(readStream);

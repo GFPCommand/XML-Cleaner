@@ -103,7 +103,7 @@
                                Text="{Binding FileSize}"
                                TextWrapping="Wrap"/>
                 </Grid>
-                
+
         </Border>
 
         <Border Grid.Row="1"
