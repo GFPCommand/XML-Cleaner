@@ -2,15 +2,18 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using XML_Cleaner.Model;
-using System.Text;
+using XML_Cleaner.ViewModel;
 
 namespace XML_Cleaner.Commands;
 
 public class FileIOCommand
 {
     private FileIOManager fileIOManager = new();
+
+    private MainWindowViewModel _mainVM;
 
     private string? _fileContent;
     
@@ -20,8 +23,11 @@ public class FileIOCommand
         }
     }
 
-    // write class file manager
-    // commands must call functions from file manager
+    public FileIOCommand(MainWindowViewModel reactiveObject)
+    {
+        _mainVM = reactiveObject;
+    }
+
     public async Task OpenFile()
     {
         try
@@ -29,22 +35,18 @@ public class FileIOCommand
             var file = await fileIOManager.DoOpenFilePickerAsync();
             if (file is null) return;
 
-            if ((await file.GetBasicPropertiesAsync()).Size <= 1024 * 1024 * 1)
-            {
-                await using var readStream = await file.OpenReadAsync();
-                using var reader = new StreamReader(readStream);
-                _fileContent = await reader.ReadToEndAsync();
-            }
-            else
-            {
-                throw new Exception("File exceeded 1MB limit.");
-            }
+            _mainVM.FileName = file.Name;
+            _mainVM.FilePath = file.Path.LocalPath;
+            _mainVM.FileSize = (ulong)(await file.GetBasicPropertiesAsync()).Size! / 1024;
+
+            await using var readStream = await file.OpenReadAsync();
+            using var reader = new StreamReader(readStream);
+            _fileContent = await reader.ReadToEndAsync();
         }
         catch
         {
             Debug.WriteLine("ERROR");
         }
-        Debug.WriteLine(_fileContent);
     }
 
     public async Task SaveFile(bool isSaveAs)

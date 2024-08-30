@@ -17,8 +17,9 @@ public class FileIOManager
         var files = await provider.OpenFilePickerAsync(new FilePickerOpenOptions()
         {
             Title = "Open XML file",
-            AllowMultiple = false
-        });
+            AllowMultiple = false,
+			FileTypeFilter = [new("XML File") { Patterns = ["*.xml"] }, FilePickerFileTypes.All]
+		});
 
         return files?.Count >= 1 ? files[0] : null;
     }

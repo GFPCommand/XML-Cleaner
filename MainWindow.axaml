@@ -43,7 +43,7 @@
                     BorderThickness="0"
                     CornerRadius="3"
                     Margin="10">
-                <TextBlock Text="File path..."
+                <TextBlock Text="{Binding FilePath}"
                             VerticalAlignment="Center"
                             Foreground="Black"
                             Margin="10"/>
@@ -77,7 +77,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <!-- 1st row -->
@@ -88,33 +87,20 @@
 
                     <TextBlock x:Name="fileName"
                                Grid.Column="1"
-					           Text="{Binding filename}"
-                               TextWrapping="Wrap"/>
-
-                    <!-- 2nd row -->
-
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="1"
-                               Text="Путь к файлу: "
-                               TextWrapping="Wrap"/>
-
-                    <TextBlock x:Name="filePath"
-                               Grid.Column="1"
-                               Grid.Row="1"
-                               Text="{Binding filepath}"
+					           Text="{Binding FileName}"
                                TextWrapping="Wrap"/>
 
                     <!-- 3rd row -->
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="2"
-                               Text="Путь к файлу: "
+                               Text="Размер файла: "
                                TextWrapping="Wrap"/>
 
                     <TextBlock x:Name="fileSize"
                                Grid.Column="1"
                                Grid.Row="2"
-                               Text="{Binding filesize}"
+                               Text="{Binding FileSize}"
                                TextWrapping="Wrap"/>
                 </Grid>
                 

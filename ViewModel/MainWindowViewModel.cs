@@ -6,37 +6,72 @@ using XML_Cleaner.Commands;
 
 namespace XML_Cleaner.ViewModel;
 
-class MainWindowViewModel
+public class MainWindowViewModel : ViewModelBase
 {
-	public string filename { get; set; }
-	public string filepath { get; set; }
-	public string filesize { get; set; }
+	private bool _canClear;
+	private bool _canStopClear;
 
-	public FileIOCommand FileIO_command = new();
+	private ulong _fileSize;
+
+	private string _fileName = string.Empty;
+	private string _filePath = string.Empty;
+
+	public string FileName { 
+		get { return _fileName; }
+		set { this.RaiseAndSetIfChanged(ref _fileName, value); }
+	}
+
+	public ulong FileSize {
+		get { return _fileSize; }
+		set { this.RaiseAndSetIfChanged(ref _fileSize, value); }
+	}
+
+	public string FilePath
+	{
+		get { return _filePath; }
+		set { this.RaiseAndSetIfChanged(ref _filePath, value); }
+	}
+
+	public bool CanClear
+	{
+		get { return _canClear; }
+		set { this.RaiseAndSetIfChanged(ref _canClear, value); }
+	}
+
+	public bool CanStopClear
+	{
+		get { return _canStopClear; }
+		set { this.RaiseAndSetIfChanged(ref _canStopClear, value); }
+	}
+
+	private IObservable<bool> _canClearObserver;
+	private IObservable<bool> _canStopClearObserver;
+
+	public FileIOCommand FileIO_command;
 
 	public ElementClearingCommand ElementClearing_command = new();
 
-	public ReactiveCommand<Unit, Task> FileOpenCommand { get; }
-	public ReactiveCommand<bool, Task> FileSaveCommand { get; }
+	public ReactiveCommand<Unit, Unit> FileOpenCommand { get; }
+	public ReactiveCommand<bool, Unit> FileSaveCommand { get; }
 
 	public ReactiveCommand<Unit, Unit> ClearExtraElementsCommand { get; }
 	public ReactiveCommand<Unit, Unit> StopClearExtraElementsCommand { get; }
 
-	Func<bool, Task> action;
+	private Func<bool, Task> _action;
 
 	public MainWindowViewModel()
 	{
-		filename = "File";
-		filepath = "path";
-		filesize = "too much";
+		FileIO_command = new(this);
 
-		action += FileIO_command.SaveFile;
+		_canClearObserver = this.WhenAnyValue(x => x.CanClear);
+		_canStopClearObserver = this.WhenAnyValue(x => x.CanStopClear);
 
-		FileOpenCommand = ReactiveCommand.Create(FileIO_command.OpenFile);
-		FileSaveCommand = ReactiveCommand.Create(action);
+		_action += FileIO_command.SaveFile;
 
-		// add isvalid fields for commands for defining of executing of it
-		ClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.ClearExtraElements);
-		StopClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.StopClearingExtraElements);
+		FileOpenCommand = ReactiveCommand.CreateFromTask(FileIO_command.OpenFile);
+		FileSaveCommand = ReactiveCommand.CreateFromTask(_action);
+
+		ClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.ClearExtraElements, _canClearObserver);
+		StopClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.StopClearingExtraElements, _canStopClearObserver);
 	}
 }

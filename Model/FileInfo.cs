@@ -7,7 +7,7 @@ public class FileInfo
     // file path without file name at the end of the path string
     public string? Path { get; set; }
     // get in bytes and convert in necessary value if needed in output
-    public long FileSize  { get; set; }
+    public ulong FileSize  { get; set; }
     // file name
     public string? FileName { get; set; }
     // file content
