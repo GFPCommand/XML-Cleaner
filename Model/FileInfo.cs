@@ -1,6 +1,6 @@
 namespace XML_Cleaner.Model;
 
-public class FileInfo
+public class FileInformation
 {
     // file path with file name at the end of the path string
     public string? FullPath { get; set; }
