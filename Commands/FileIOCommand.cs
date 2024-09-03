@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using XML_Cleaner.Model;
-using System.ComponentModel;
+using XML_Cleaner.ViewModel;
 namespace XML_Cleaner.Commands;
 
 public class FileIOCommand
@@ -14,19 +14,23 @@ public class FileIOCommand
 
     private string? _fileContent;
 
-    private FileInformation _file = null!;
+    private FileInformation _file = new();
 
-    public FileInformation File
+    public FileInformation File => _file;
+
+    private MainWindowViewModel _mainWindowViewModel;
+
+    public FileIOCommand(MainWindowViewModel mainWindowViewModel)
     {
-        get { return _file ?? new() { FullPath = "", Path = "File path...", FileSize = 0, FileName = "", FileContent = ""}; }
+        _mainWindowViewModel = mainWindowViewModel;
     }
 
-	public async Task<FileInformation> OpenFile()
+    public async Task OpenFile()
     {
         try
         {
             var file = await fileIOManager.DoOpenFilePickerAsync();
-            if (file is null) return new();
+            if (file is null) return ;
 
             var value = (ulong)Math.Ceiling((double)(await file.GetBasicPropertiesAsync()).Size! / 1024);
 
@@ -42,13 +46,13 @@ public class FileIOCommand
                 FileName = file.Name,
                 FileContent = _fileContent
             };
+
+            _mainWindowViewModel.FileInformation = _file;
         }
         catch
         {
             Debug.WriteLine("Error while opening file");
         }
-
-        return _file;
     }
 
     public async Task SaveFile(bool isSaveAs)

@@ -17,9 +17,20 @@ public class MainWindowViewModel : ViewModelBase
 
 	public FileIOCommand FileIO_command;
 
+	public FileInformation FileInformation
+	{
+		get { return FileIO_command.File; }
+		set
+		{
+			FileName = value.FileName;
+			FileSize = value.FileSize.ToString();
+			FilePath = value.Path;
+		}
+	}
+
 	public ElementClearingCommand ElementClearing_command = new();
 
-	public ReactiveCommand<Unit, FileInformation> FileOpenCommand { get; }
+	public ReactiveCommand<Unit, Unit> FileOpenCommand { get; }
 	public ReactiveCommand<bool, Unit> FileSaveCommand { get; }
 
 	public ReactiveCommand<Unit, Unit> ClearExtraElementsCommand { get; }
@@ -29,7 +40,7 @@ public class MainWindowViewModel : ViewModelBase
 
 	public MainWindowViewModel()
 	{
-		FileIO_command = new();
+		FileIO_command = new(this);
 
 		_canClearObserver = this.WhenAnyValue(x => x.CanClear);
 		_canStopClearObserver = this.WhenAnyValue(x => x.CanStopClear);
@@ -45,27 +56,27 @@ public class MainWindowViewModel : ViewModelBase
 
 	public string FileName
 	{
-		get { return FileIO_command.File.FileName; }
+		get { return FileInformation?.FileName; }
 		set {
-			string fileName = FileIO_command.File.FileName;
-			this.RaiseAndSetIfChanged(ref fileName, value);
+			string _fileName = FileInformation.FileName;
+			this.RaiseAndSetIfChanged(ref _fileName, value);
 		}
 	}
 
 	public string FileSize
 	{
-		get { return FileIO_command.File.FileSize.ToString(); }
+		get { return FileInformation?.FileSize.ToString(); }
 		set {
-			string fileSize = $"{FileIO_command.File.FileSize} Kb";
+			string fileSize = $"{FileInformation.FileSize} Kb";
 			this.RaiseAndSetIfChanged(ref fileSize, value);
 		}
 	}
 
 	public string FilePath
 	{
-		get { return FileIO_command.File.Path; }
+		get { return FileInformation.Path ?? "File path..."; }
 		set {
-			string filePath = FileIO_command.File.Path;
+			string filePath = FileInformation.Path;
 			this.RaiseAndSetIfChanged(ref filePath, value);
 		}
 	}
