@@ -17,7 +17,7 @@ public class MainWindowViewModel : ViewModelBase
 
 	public FileIOCommand FileIO_command;
 
-	public FileInformation FileInformation
+	public FileInformation FileInfo
 	{
 		get { return FileIO_command.File; }
 		set
@@ -30,11 +30,15 @@ public class MainWindowViewModel : ViewModelBase
 
 	public ElementClearingCommand ElementClearing_command = new();
 
+	public SettingUpElementCommand SettingUp_command = new();
+
 	public ReactiveCommand<Unit, Unit> FileOpenCommand { get; }
 	public ReactiveCommand<bool, Unit> FileSaveCommand { get; }
 
 	public ReactiveCommand<Unit, Unit> ClearExtraElementsCommand { get; }
 	public ReactiveCommand<Unit, Unit> StopClearExtraElementsCommand { get; }
+
+	public ReactiveCommand<DialogWindow, Unit> AddElementShowWindowCommand { get; }
 
 	private Func<bool, Task> _action;
 
@@ -50,33 +54,35 @@ public class MainWindowViewModel : ViewModelBase
 		FileOpenCommand = ReactiveCommand.CreateFromTask(FileIO_command.OpenFile);
 		FileSaveCommand = ReactiveCommand.CreateFromTask(_action);
 
+		AddElementShowWindowCommand = ReactiveCommand.Create(SettingUp_command.AddElementCommand);
+
 		ClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.ClearExtraElements, _canClearObserver);
 		StopClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.StopClearingExtraElements, _canStopClearObserver);
 	}
 
-	public string FileName
+	public string? FileName
 	{
-		get { return FileInformation?.FileName; }
+		get { return FileInfo.FileName; }
 		set {
-			string _fileName = FileInformation.FileName;
+			string? _fileName = FileInfo.FileName;
 			this.RaiseAndSetIfChanged(ref _fileName, value);
 		}
 	}
 
-	public string FileSize
+	public string? FileSize
 	{
-		get { return FileInformation?.FileSize.ToString(); }
+		get { return FileInfo?.FileSize.ToString(); }
 		set {
-			string fileSize = $"{FileInformation.FileSize} Kb";
+			string? fileSize = $"{FileInfo.FileSize} Kb";
 			this.RaiseAndSetIfChanged(ref fileSize, value);
 		}
 	}
 
-	public string FilePath
+	public string? FilePath
 	{
-		get { return FileInformation.Path ?? "File path..."; }
+		get { return FileInfo.Path ?? "File path..."; }
 		set {
-			string filePath = FileInformation.Path;
+			string? filePath = FileInfo.Path;
 			this.RaiseAndSetIfChanged(ref filePath, value);
 		}
 	}

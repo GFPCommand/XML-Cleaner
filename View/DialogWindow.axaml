@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:local="clr-namespace:XML_Cleaner.ViewModel"
+        xmlns:vm="clr-namespace:XML_Cleaner.ViewModel"
+        x:DataType="vm:DialogWindowViewModel"
+        x:Class="XML_Cleaner.DialogWindow"
+        Title="DialogWindow">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="7*"/>
+			<ColumnDefinition Width="3*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<ComboBox x:Name="DropDown"
+				  Margin="20">
+			<ComboBoxItem>From file</ComboBoxItem>
+			<ComboBoxItem>Manual</ComboBoxItem>
+		</ComboBox>
+	</Grid>
+</Window>

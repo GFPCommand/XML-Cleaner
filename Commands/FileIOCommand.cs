@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XML_Cleaner.Model;
 using XML_Cleaner.ViewModel;
+
 namespace XML_Cleaner.Commands;
 
 public class FileIOCommand
@@ -47,7 +48,7 @@ public class FileIOCommand
                 FileContent = _fileContent
             };
 
-            _mainWindowViewModel.FileInformation = _file;
+            _mainWindowViewModel.FileInfo = _file;
         }
         catch
         {
