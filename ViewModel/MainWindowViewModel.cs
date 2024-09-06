@@ -46,7 +46,7 @@ public class MainWindowViewModel : ViewModelBase
 	{
 		FileIO_command = new(this);
 
-		SettingUp_command = new();
+		//SettingUp_command = new();
 
 		_canClearObserver = this.WhenAnyValue(x => x.CanClear);
 		_canStopClearObserver = this.WhenAnyValue(x => x.CanStopClear);
