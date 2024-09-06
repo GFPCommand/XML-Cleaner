@@ -17,6 +17,10 @@ public class MainWindowViewModel : ViewModelBase
 
 	public FileIOCommand FileIO_command;
 
+	public ElementClearingCommand ElementClearing_command = new();
+
+	public SettingUpElementCommand SettingUp_command;
+
 	public FileInformation FileInfo
 	{
 		get { return FileIO_command.File; }
@@ -28,23 +32,21 @@ public class MainWindowViewModel : ViewModelBase
 		}
 	}
 
-	public ElementClearingCommand ElementClearing_command = new();
-
-	public SettingUpElementCommand SettingUp_command = new();
-
 	public ReactiveCommand<Unit, Unit> FileOpenCommand { get; }
 	public ReactiveCommand<bool, Unit> FileSaveCommand { get; }
 
 	public ReactiveCommand<Unit, Unit> ClearExtraElementsCommand { get; }
 	public ReactiveCommand<Unit, Unit> StopClearExtraElementsCommand { get; }
 
-	public ReactiveCommand<DialogWindow, Unit> AddElementShowWindowCommand { get; }
+	public ReactiveCommand<Unit, Unit> AddElementShowWindowCommand { get; }
 
 	private Func<bool, Task> _action;
 
 	public MainWindowViewModel()
 	{
 		FileIO_command = new(this);
+
+		SettingUp_command = new();
 
 		_canClearObserver = this.WhenAnyValue(x => x.CanClear);
 		_canStopClearObserver = this.WhenAnyValue(x => x.CanStopClear);

@@ -3,9 +3,16 @@
 namespace XML_Cleaner.Commands;
 public class SettingUpElementCommand
 {
-	public void AddElementCommand(DialogWindow dialogWindow)
+	private DialogWindow _dialogWindow;
+
+    public SettingUpElementCommand(DialogWindow dialogWindow)
+    {
+        _dialogWindow = dialogWindow;
+    }
+
+    public void AddElementCommand()
 	{
-		dialogWindow.Show();
+		_dialogWindow.Show();
 	}
 
 	public void RemoveElementCommand() 
@@ -13,3 +20,4 @@ public class SettingUpElementCommand
 
 	}
 }
+// https://docs.avaloniaui.net/docs/tutorials/music-store-app/opening-a-dialog

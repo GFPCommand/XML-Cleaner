@@ -8,7 +8,8 @@
         xmlns:vm="clr-namespace:XML_Cleaner.ViewModel"
         x:DataType="vm:DialogWindowViewModel"
         x:Class="XML_Cleaner.DialogWindow"
-        Title="DialogWindow">
+        Title="DialogWindow"
+		WindowStartupLocation="CenterOwner">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="7*"/>
