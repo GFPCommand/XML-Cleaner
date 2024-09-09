@@ -32,7 +32,8 @@ public class FileIOManager
 
         return await provider.SaveFilePickerAsync(new FilePickerSaveOptions()
         {
-            Title = "Save XML File"
+            Title = "Save XML File",
+            FileTypeChoices = [new ("XML File") { Patterns = ["*.xml"] }, FilePickerFileTypes.All]
         });
     }
 }

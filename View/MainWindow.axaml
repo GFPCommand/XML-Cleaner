@@ -29,9 +29,9 @@
         <!-- 1st row -->
         <!-- open file -->
 
-        <Grid ShowGridLines="False" Grid.Row="0" Grid.Column="0">
+        <Grid ShowGridLines="False" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -124,7 +124,6 @@
 				</Grid.RowDefinitions>
 				
 				<TextBlock x:Name="cutFileInfo"
-					       Text="newFileInfo"
 					       TextWrapping="Wrap"
 					       Margin="10"
                            Grid.Column=""/>
@@ -163,9 +162,9 @@
                 BorderThickness="1"
                 Margin="10">
 
-			<DataGrid>
-				
-			</DataGrid>
+			<ListBox x:Name="ExtraNodes">
+				<ListBoxItem/>
+			</ListBox>
         </Border>
 
         <Border Grid.Row="2"
@@ -190,14 +189,16 @@
 								Content="Add"
 								HorizontalAlignment="Center"
 								Width="100"
-								HorizontalContentAlignment="Center">
+								HorizontalContentAlignment="Center"
+								Command="{Binding AddElementShowWindowCommand}">
 						</Button>
 						
 						<Button Grid.Column="1"
 								Content="Remove"
 								HorizontalAlignment="Center"
 								Width="100"
-								HorizontalContentAlignment="Center">
+								HorizontalContentAlignment="Center"
+								Command="{Binding RemoveElementCommand}">
 						</Button>
 					</Grid>
 
@@ -212,7 +213,7 @@
 							    Width="190"
 								Margin="15 0 0 0"
 							    HorizontalContentAlignment="Center"
-								IsEnabled="True"
+								IsEnabled="False"
                                 Command="{Binding ClearExtraElementsCommand}">
 						</Button>
 

@@ -26,12 +26,12 @@ public class FileIOCommand
         _mainWindowViewModel = mainWindowViewModel;
     }
 
-    public async Task OpenFile()
+    public async Task<bool> OpenFile()
     {
         try
         {
             var file = await fileIOManager.DoOpenFilePickerAsync();
-            if (file is null) return ;
+            if (file is null) return false;
 
             var value = (ulong)Math.Ceiling((double)(await file.GetBasicPropertiesAsync()).Size! / 1024);
 
@@ -48,24 +48,35 @@ public class FileIOCommand
                 FileContent = _fileContent
             };
 
-            _mainWindowViewModel.FileInfo = _file;
-        }
+			//_mainWindowViewModel.FileInfo = _file;
+
+			_mainWindowViewModel.FileName = _file.FileName;
+			_mainWindowViewModel.FileSize = $"{_file.FileSize} Kb";
+			_mainWindowViewModel.FilePath = _file.Path;
+
+			return true;
+		}
         catch
         {
             Debug.WriteLine("Error while opening file");
-        }
+
+			return false;
+		}
     }
 
     public async Task SaveFile(bool isSaveAs)
     {
         try
         {
-            var file = await fileIOManager.DoSaveFlePickerAsync();
-            if (file is not null) return;
+            if (isSaveAs)
+            {
+                var file = await fileIOManager.DoSaveFlePickerAsync();
+                if (file is not null) return;
 
-            var stream = new MemoryStream(Encoding.Default.GetBytes(_fileContent));
-            await using var writeStream = await file!.OpenWriteAsync();
-            await stream.CopyToAsync(writeStream);
+                var stream = new MemoryStream(Encoding.Default.GetBytes(_fileContent));
+                await using var writeStream = await file!.OpenWriteAsync();
+                await stream.CopyToAsync(writeStream);
+            }
         }
         catch 
         {

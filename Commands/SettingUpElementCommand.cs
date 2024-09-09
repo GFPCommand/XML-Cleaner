@@ -5,9 +5,9 @@ public class SettingUpElementCommand
 {
 	private DialogWindow _dialogWindow;
 
-    public SettingUpElementCommand(DialogWindow dialogWindow)
+    public SettingUpElementCommand()
     {
-        _dialogWindow = dialogWindow;
+
     }
 
     public void AddElementCommand()
