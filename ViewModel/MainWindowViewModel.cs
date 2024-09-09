@@ -35,17 +35,19 @@ public class MainWindowViewModel : ViewModelBase
 	public ReactiveCommand<Unit, Unit> AddElementShowWindowCommand { get; }
 	public ReactiveCommand<Unit, Unit> RemoveElementCommand { get; }
 
+	DialogWindow dialogWindow = new();
+
 	private Func<bool, Task> _action;
 
 	private string? _fileName;
 	private string? _fileSize = "0 Kb";
 	private string? _filePath;
 
-	public MainWindowViewModel()
+	public MainWindowViewModel(MainWindow mainWindow)
 	{
 		FileIO_command = new(this);
 
-		SettingUp_command = new();
+		SettingUp_command = new(dialogWindow, mainWindow);
 
 		_canClearObserver = this.WhenAnyValue(x => x.CanClear);
 		_canStopClearObserver = this.WhenAnyValue(x => x.CanStopClear);
@@ -61,7 +63,7 @@ public class MainWindowViewModel : ViewModelBase
 		ClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.ClearExtraElements, _canClearObserver);
 		StopClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.StopClearingExtraElements, _canStopClearObserver);
 
-		AddElementShowWindowCommand = ReactiveCommand.Create(SettingUp_command.AddElementCommand, _canEditExtraNodesObserver);
+		AddElementShowWindowCommand = ReactiveCommand.CreateFromTask(SettingUp_command.AddElementCommand, _canEditExtraNodesObserver);
 		RemoveElementCommand = ReactiveCommand.Create(SettingUp_command.RemoveElementCommand, _canEditExtraNodesObserver);
 	}
 

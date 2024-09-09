@@ -2,14 +2,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" Width="500" Height="400"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		xmlns:local="clr-namespace:XML_Cleaner.ViewModel"
         xmlns:vm="clr-namespace:XML_Cleaner.ViewModel"
         x:DataType="vm:DialogWindowViewModel"
         x:Class="XML_Cleaner.DialogWindow"
-        Title="DialogWindow"
-		WindowStartupLocation="CenterOwner">
+        Title="Add elements"
+		WindowStartupLocation="CenterOwner"
+		Icon="avares://XML Cleaner/Assets/logo.ico"
+		
+		ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        SystemDecorations="BorderOnly">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="7*"/>
@@ -21,9 +27,28 @@
 		</Grid.RowDefinitions>
 
 		<ComboBox x:Name="DropDown"
-				  Margin="20">
+				  Margin="20"
+				  SelectedIndex="0"
+				  MaxDropDownHeight="100">
+			<ComboBoxItem>Select mode</ComboBoxItem>
 			<ComboBoxItem>From file</ComboBoxItem>
 			<ComboBoxItem>Manual</ComboBoxItem>
 		</ComboBox>
+
+		<TextBox Grid.Row="1"
+				 Grid.Column="0"
+				 Grid.ColumnSpan="2"/>
+
+		<Button Width="40"
+                Height="40"
+                Margin="5"
+                HorizontalAlignment="Left"
+                Content="OK"/>
+
+		<Button Width="40"
+                Height="40"
+                Margin="5"
+                HorizontalAlignment="Left"
+                Content="Cancel"/>
 	</Grid>
 </Window>

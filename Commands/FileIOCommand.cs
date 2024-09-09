@@ -52,7 +52,9 @@ public class FileIOCommand
 
 			_mainWindowViewModel.FileName = _file.FileName;
 			_mainWindowViewModel.FileSize = $"{_file.FileSize} Kb";
-			_mainWindowViewModel.FilePath = _file.Path;
+			_mainWindowViewModel.FilePath = _file.FullPath;
+
+            _mainWindowViewModel.CanEdit = true;
 
 			return true;
 		}
@@ -73,7 +75,7 @@ public class FileIOCommand
                 var file = await fileIOManager.DoSaveFlePickerAsync();
                 if (file is not null) return;
 
-                var stream = new MemoryStream(Encoding.Default.GetBytes(_fileContent));
+                var stream = new MemoryStream(Encoding.Default.GetBytes(_fileContent!));
                 await using var writeStream = await file!.OpenWriteAsync();
                 await stream.CopyToAsync(writeStream);
             }

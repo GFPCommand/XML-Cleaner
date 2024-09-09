@@ -1,18 +1,23 @@
-﻿using Avalonia.Controls;
+﻿using System.Threading.Tasks;
 
 namespace XML_Cleaner.Commands;
 public class SettingUpElementCommand
 {
 	private DialogWindow _dialogWindow;
 
-    public SettingUpElementCommand()
-    {
+	private MainWindow _mainWindow;
 
+    public SettingUpElementCommand(DialogWindow dialogWindow, MainWindow mainWindow)
+    {
+		_dialogWindow = dialogWindow;
+		_mainWindow = mainWindow;
     }
 
-    public void AddElementCommand()
+	// open dialog window and wait additonal info for next working
+	// dialog window logic should be realized in separate class
+    public async Task AddElementCommand()
 	{
-		_dialogWindow.Show();
+		await _dialogWindow.ShowDialog(_mainWindow);
 	}
 
 	public void RemoveElementCommand() 
