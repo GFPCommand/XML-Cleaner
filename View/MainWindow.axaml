@@ -12,7 +12,7 @@
         x:Class="XML_Cleaner.MainWindow"
         Title="XML Cleaner"
         Icon="avares://XML Cleaner/Assets/logo.ico"
-        Background="White"
+		Background="White"
 		CanResize="False">
 	
     <Grid ShowGridLines="False" Margin="30, 10">

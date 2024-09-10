@@ -9,6 +9,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        DataContext = new MainWindowViewModel(this);
+        DataContext = new MainWindowViewModel();
     }
 }
