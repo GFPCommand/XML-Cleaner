@@ -10,7 +10,7 @@ public class ClearingWorker
 
     private List<Element> _elements = [];
     // maybe make contract interface for files contents
-    private string _content;
+    //private string _content;
 
     public ClearingWorker()
     {
@@ -19,7 +19,7 @@ public class ClearingWorker
 
     public async Task ClearFileAsync()
     {
-
+        await Task.Delay(100);
     }
 }
 

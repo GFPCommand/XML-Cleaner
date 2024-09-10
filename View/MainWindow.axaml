@@ -163,7 +163,12 @@
                 Margin="10">
 
 			<ListBox x:Name="ExtraNodes">
-				<ListBoxItem/>
+				<ListBoxItem>1</ListBoxItem>
+                <ListBoxItem>2</ListBoxItem>
+                <ListBoxItem>3</ListBoxItem>
+                <ListBoxItem>4</ListBoxItem>
+                <ListBoxItem>5</ListBoxItem>
+                <ListBoxItem>6</ListBoxItem>
 			</ListBox>
         </Border>
 
@@ -190,7 +195,8 @@
 								HorizontalAlignment="Center"
 								Width="100"
 								HorizontalContentAlignment="Center"
-								Command="{Binding AddElementShowWindowCommand}">
+								Click="AddElements_Click"
+                                IsEnabled="{Binding CanEdit}">
 						</Button>
 						
 						<Button Grid.Column="1"
@@ -198,7 +204,8 @@
 								HorizontalAlignment="Center"
 								Width="100"
 								HorizontalContentAlignment="Center"
-								Command="{Binding RemoveElementCommand}">
+								Click="RemoveElements_Click"
+                                IsEnabled="{Binding CanEdit}">
 						</Button>
 					</Grid>
 
