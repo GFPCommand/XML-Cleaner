@@ -5,27 +5,18 @@ namespace XML_Cleaner;
 
 public partial class MainWindow : Window
 {
-    private DialogWindow _dialogWindow;
-
     public MainWindow()
     {
         InitializeComponent();
 
         DataContext = new MainWindowViewModel();
-
-        _dialogWindow = new();
     }
 
-    protected override void OnClosing(WindowClosingEventArgs e)
-    {
-        _dialogWindow.Close();
-        base.OnClosing(e);
-    }
-
-    public void AddElements_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public async void AddElements_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         // use ShowDialog instead?
-        _dialogWindow.ShowDialog(this);
+        DialogWindow _dialogWindow = new();
+        await _dialogWindow.ShowDialog(this);
     }
 
     public void RemoveElements_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)

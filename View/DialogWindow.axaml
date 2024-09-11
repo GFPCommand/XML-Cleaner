@@ -64,7 +64,10 @@
 				 Grid.Row="1"
 				 Grid.Column="0"
 				 Grid.ColumnSpan="2"
-				 Margin="20 0 20 10"/>
+				 Height="250"
+				 Margin="20 0 20 10"
+				 IsEnabled="{Binding !IsFileLoadable}"
+				 AcceptsReturn="True"/>
 
 		<Grid Grid.Row="2"
 			  Grid.Column="1"

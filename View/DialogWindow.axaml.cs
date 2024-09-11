@@ -1,6 +1,7 @@
+using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using System.Diagnostics;
+using XML_Cleaner.CodeAnalyzer;
 using XML_Cleaner.ViewModel;
 
 namespace XML_Cleaner;
@@ -8,6 +9,8 @@ namespace XML_Cleaner;
 public partial class DialogWindow : Window
 {
     private DialogWindowViewModel _viewModel;
+
+    private LexerAnalyzer _analyzer;
 
     public DialogWindow()
     {
@@ -20,11 +23,25 @@ public partial class DialogWindow : Window
 
     private void LoadElementsList_Click(object sender, RoutedEventArgs e)
     {
-        //parse input field
-
+        string? rootNodeName = RootNode.Text;
         string? value = InputField.Text;
 
-        Debug.WriteLine(value);
+        if (string.IsNullOrWhiteSpace(rootNodeName) || string.IsNullOrWhiteSpace(value)) 
+        {
+            ClearInputFields();
+
+            Debug.WriteLine("Empty");
+
+            return;
+        }
+
+        // get split strings from input
+        foreach (var i in value.Split(';'))
+        {
+            _analyzer.AddLexemToList(i);
+        }
+
+        _analyzer.Analyzer();
 
         ClearInputFields();
     }
@@ -38,19 +55,7 @@ public partial class DialogWindow : Window
     {
         if (ModesList is null) return;
 
-		switch (ModesList.SelectedIndex)
-		{
-			case 0:
-				break;
-			case 1:
-				_viewModel.IsFileLoadable = true;
-				break;
-			case 2:
-				_viewModel.IsFileLoadable = false;
-				break;
-			default:
-				break;
-		}
+        _viewModel.IsFileLoadable = ModesList.SelectedIndex == 1;
 	}
 
     private void ClearInputFields()
@@ -58,6 +63,6 @@ public partial class DialogWindow : Window
         InputField.Clear();
         RootNode.Clear();
 
-        Hide();
+        Close();
     }
 }
