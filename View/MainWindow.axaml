@@ -44,9 +44,9 @@
                     CornerRadius="3"
                     Margin="10">
                 <TextBlock Text="{Binding FilePath}"
-                            VerticalAlignment="Center"
-                            Foreground="Black"
-                            Margin="10"/>
+                           VerticalAlignment="Center"
+                           Foreground="Black"
+                           Margin="10"/>
             </Border>
             <!-- Open file command -->
             <Button x:Name="OpenFileButton"

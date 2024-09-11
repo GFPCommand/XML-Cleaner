@@ -14,7 +14,6 @@
 		ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="OSXThickTitleBar"
         ExtendClientAreaTitleBarHeightHint="-1"
-		ClosingBehavior="OwnerWindowOnly"
         SystemDecorations="Full"
 		Background="#aeaeae"
 		CanResize="False">
@@ -30,11 +29,13 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		
-		<ComboBox x:Name="DropDown"
+		<ComboBox x:Name="ModesList"
 				  Margin="20"
 				  Height="40"
+				  Width="130"
 				  SelectedIndex="0"
-				  MaxDropDownHeight="100">
+				  MaxDropDownHeight="100"
+				  SelectionChanged="ModesList_SelectionChanged">
 			<ComboBoxItem>Select mode</ComboBoxItem>
 			<ComboBoxItem>From file</ComboBoxItem>
 			<ComboBoxItem>Manual</ComboBoxItem>
@@ -46,14 +47,17 @@
                 Height="40"
                 Margin="160 0 0 0"
                 HorizontalAlignment="Left"
-				IsVisible="False">
+				Command="{Binding LoadNodesFromFileCommand}"
+				IsVisible="{Binding IsFileLoadable}">
 			<Image Source="avares://XML Cleaner/Assets/folder.png"/>
 		</Button>
 
 		<TextBox x:Name="RootNode"
 				 Grid.Column="1"
-				 Width="250"
-				 Margin="0 20 20 20"
+				 Width="200"
+				 Margin="0 20 70 20"
+				 Watermark="Root node..."
+				 VerticalContentAlignment="Center"
 				 HorizontalAlignment="Left"/>
 
 		<TextBox x:Name="InputField"

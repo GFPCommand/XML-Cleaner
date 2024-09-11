@@ -25,7 +25,7 @@ public partial class MainWindow : Window
     public void AddElements_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         // use ShowDialog instead?
-        _dialogWindow.Show();
+        _dialogWindow.ShowDialog(this);
     }
 
     public void RemoveElements_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)

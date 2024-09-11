@@ -55,6 +55,7 @@ public class FileIOCommand
 			_mainWindowViewModel.FilePath = _file.FullPath;
 
             _mainWindowViewModel.CanEdit = true;
+            _mainWindowViewModel.CanSave = true;
 
 			return true;
 		}
