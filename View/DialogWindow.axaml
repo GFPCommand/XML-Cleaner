@@ -40,8 +40,7 @@
 			<ComboBoxItem>From file</ComboBoxItem>
 			<ComboBoxItem>Manual</ComboBoxItem>
 		</ComboBox>
-
-		<!-- Bind visible to selected mode -->
+		
 		<Button Grid.Column="0"
                 Width="40"
                 Height="40"

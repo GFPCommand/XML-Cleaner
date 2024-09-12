@@ -46,10 +46,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Lexer\" />
-  </ItemGroup>
 </Project>
 
 <!-- https://habr.com/ru/articles/791512/ -->

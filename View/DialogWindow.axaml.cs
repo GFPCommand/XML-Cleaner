@@ -26,22 +26,16 @@ public partial class DialogWindow : Window
         string? rootNodeName = RootNode.Text;
         string? value = InputField.Text;
 
-        if (string.IsNullOrWhiteSpace(rootNodeName) || string.IsNullOrWhiteSpace(value)) 
+        if (string.IsNullOrWhiteSpace(value)) 
         {
             ClearInputFields();
 
-            Debug.WriteLine("Empty");
+            Debug.WriteLine("Empty input");
 
             return;
         }
 
-        // get split strings from input
-        foreach (var i in value.Split(';'))
-        {
-            _analyzer.AddLexemToList(i);
-        }
-
-        _analyzer.Analyzer();
+        _analyzer.Parser(value);
 
         ClearInputFields();
     }

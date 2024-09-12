@@ -74,7 +74,7 @@ public class FileIOCommand
             if (isSaveAs)
             {
                 var file = await fileIOManager.DoSaveFlePickerAsync();
-                if (file is not null) return;
+                if (file is null) return;
 
                 var stream = new MemoryStream(Encoding.Default.GetBytes(_fileContent!));
                 await using var writeStream = await file!.OpenWriteAsync();

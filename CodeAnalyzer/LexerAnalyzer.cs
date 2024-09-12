@@ -4,22 +4,32 @@ namespace XML_Cleaner.CodeAnalyzer;
 
 public class LexerAnalyzer
 {
-    public List<string> InputLexems = [];
+    private List<string> _input = [];
+
+    private List<Lexem> _lexems = [];
 
     public LexerAnalyzer() {}
 
     // maybe set all string from view and parse here
-    public void AddLexemToList(string lexem)
+    private void Splitter(string content)
     {
-        if (lexem is not null)
+		foreach (var item in content.Split(';'))
+		{
+			if (!string.IsNullOrEmpty(item))
+			{
+				_input.Add(item);
+			}
+		}
+	}
+
+    public void Parser(string content)
+    {
+        Splitter(content);
+
+        foreach (var item in _input)
         {
-            InputLexems.Add(lexem);
+            
         }
-    }
-
-    public void Analyzer()
-    {
-
     }
 }
 

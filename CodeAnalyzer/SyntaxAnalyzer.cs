@@ -12,5 +12,10 @@ public class SyntaxAnalyzer
         
     }
 
+    public bool CheckLexemCorrectness(Lexem lexem)
+    {
+        bool isCorrect = false;
 
+        return isCorrect;
+    }
 }
