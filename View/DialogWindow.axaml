@@ -15,7 +15,7 @@
         ExtendClientAreaChromeHints="OSXThickTitleBar"
         ExtendClientAreaTitleBarHeightHint="-1"
         SystemDecorations="Full"
-		Background="#aeaeae"
+		Background="#b0b0b0"
 		CanResize="False">
 	
 	<Grid>
@@ -49,6 +49,9 @@
 				Command="{Binding LoadNodesFromFileCommand}"
 				IsVisible="{Binding IsFileLoadable}">
 			<Image Source="avares://XML Cleaner/Assets/folder.png"/>
+			<Button.CommandParameter>
+				<sys:Boolean>True</sys:Boolean>
+			</Button.CommandParameter>
 		</Button>
 
 		<TextBox x:Name="RootNode"

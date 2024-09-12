@@ -12,11 +12,15 @@ public partial class DialogWindow : Window
 
     private LexerAnalyzer _analyzer;
 
+    public static string? XPA_Content { get; set; }
+
     public DialogWindow()
     {
         InitializeComponent();
 
         _viewModel = new();
+
+        _analyzer = new();
 
         DataContext = _viewModel;
     }
@@ -24,7 +28,10 @@ public partial class DialogWindow : Window
     private void LoadElementsList_Click(object sender, RoutedEventArgs e)
     {
         string? rootNodeName = RootNode.Text;
-        string? value = InputField.Text;
+        string? value = string.Empty;
+
+        if (ModesList.SelectedIndex == 1) value = XPA_Content;
+        if (ModesList.SelectedIndex == 2) value = InputField.Text;
 
         if (string.IsNullOrWhiteSpace(value)) 
         {
@@ -35,7 +42,7 @@ public partial class DialogWindow : Window
             return;
         }
 
-        _analyzer.Parser(value);
+        _analyzer.Parser(value, rootNodeName);
 
         ClearInputFields();
     }

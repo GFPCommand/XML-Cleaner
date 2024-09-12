@@ -32,10 +32,11 @@ public class MainWindowViewModel : ViewModelBase
 	public ReactiveCommand<Unit, Unit> ClearExtraElementsCommand { get; }
 	public ReactiveCommand<Unit, Unit> StopClearExtraElementsCommand { get; }
 
-	public ReactiveCommand<Unit, Unit> AddElementShowWindowCommand { get; }
+	public ReactiveCommand<bool, Unit> AddElementShowWindowCommand { get; }
 	//public ReactiveCommand<Unit, Unit> RemoveElementCommand { get; }
 
 	private Func<bool, Task> _action;
+	private Func<bool, Task> _helpDelegate;
 
 	private string? _fileName;
 	private string? _fileSize = "0 Kb";
@@ -54,6 +55,7 @@ public class MainWindowViewModel : ViewModelBase
 		_canEditExtraNodesObserver = this.WhenAnyValue(x => x.CanEdit);
 
 		_action += FileIO_command.SaveFile;
+		_helpDelegate += SettingUp_command.AddElementCommand;
 
 		FileOpenCommand = ReactiveCommand.CreateFromTask(FileIO_command.OpenFile);
 		FileSaveCommand = ReactiveCommand.CreateFromTask(_action, _canSaveFileObserver);
@@ -61,7 +63,7 @@ public class MainWindowViewModel : ViewModelBase
 		ClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.ClearExtraElements, _canClearObserver);
 		StopClearExtraElementsCommand = ReactiveCommand.Create(ElementClearing_command.StopClearingExtraElements, _canStopClearObserver);
 
-		AddElementShowWindowCommand = ReactiveCommand.Create(SettingUp_command.AddElementCommand, _canEditExtraNodesObserver);
+		AddElementShowWindowCommand = ReactiveCommand.CreateFromTask(_helpDelegate, _canEditExtraNodesObserver);
 		//RemoveElementCommand = ReactiveCommand.Create(SettingUp_command.RemoveElementCommand, _canEditExtraNodesObserver);
 	}
 

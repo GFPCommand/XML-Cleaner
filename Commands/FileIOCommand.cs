@@ -11,8 +11,6 @@ namespace XML_Cleaner.Commands;
 
 public class FileIOCommand
 {
-    private FileIOManager fileIOManager = new();
-
     private string? _fileContent;
 
     private FileInformation _file = new();
@@ -30,7 +28,7 @@ public class FileIOCommand
     {
         try
         {
-            var file = await fileIOManager.DoOpenFilePickerAsync();
+            var file = await FileIOManager.DoOpenFilePickerAsync(false);
             if (file is null) return false;
 
             var value = (ulong)Math.Ceiling((double)(await file.GetBasicPropertiesAsync()).Size! / 1024);
@@ -73,7 +71,7 @@ public class FileIOCommand
         {
             if (isSaveAs)
             {
-                var file = await fileIOManager.DoSaveFlePickerAsync();
+                var file = await FileIOManager.DoSaveFlePickerAsync();
                 if (file is null) return;
 
                 var stream = new MemoryStream(Encoding.Default.GetBytes(_fileContent!));

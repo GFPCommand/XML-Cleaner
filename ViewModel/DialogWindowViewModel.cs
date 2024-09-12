@@ -1,6 +1,7 @@
 ﻿using ReactiveUI;
 using System;
 using System.Reactive;
+using System.Threading.Tasks;
 using XML_Cleaner.Commands;
 
 namespace XML_Cleaner.ViewModel
@@ -13,15 +14,18 @@ namespace XML_Cleaner.ViewModel
 
         private SettingUpElementCommand _settingUpElementCommand = new();
 
-        public ReactiveCommand<Unit, Unit> LoadNodesFromFileCommand { get; }
+        public ReactiveCommand<bool, Unit> LoadNodesFromFileCommand { get; }
+
+        private Func<bool, Task> _action;
 
         public DialogWindowViewModel()
         {
+            _action += _settingUpElementCommand.AddElementCommand;
+
             _isFileLoadableObserver = this.WhenAnyValue(x => x.IsFileLoadable);
 
-            LoadNodesFromFileCommand = ReactiveCommand.Create(_settingUpElementCommand.AddElementCommand, _isFileLoadableObserver);
+            LoadNodesFromFileCommand = ReactiveCommand.CreateFromTask(_action, _isFileLoadableObserver);
         }
-
         public bool IsFileLoadable
         {
             get { return _isFileLoadable; } 

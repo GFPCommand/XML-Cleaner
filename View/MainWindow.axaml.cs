@@ -14,7 +14,6 @@ public partial class MainWindow : Window
 
     public async void AddElements_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        // use ShowDialog instead?
         DialogWindow _dialogWindow = new();
         await _dialogWindow.ShowDialog(this);
     }
@@ -23,6 +22,6 @@ public partial class MainWindow : Window
     {
         int index = ExtraNodes.SelectedIndex;
 
-        if (index != -1) ExtraNodes.Items.RemoveAt(index);
+        if (index > -1) ExtraNodes.Items.RemoveAt(index);
     }
 }
