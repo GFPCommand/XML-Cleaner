@@ -38,6 +38,7 @@ public class LexerAnalyzer
             if (index == -1) 
             {
                 _lexems.Add(new Lexem() {Main_XPath = item});
+                Debug.WriteLine(item);
                 continue;
             }
 
@@ -66,8 +67,51 @@ public class LexerAnalyzer
 
             if (idx_s == -1 || idx_z == -1)
             {
-                string final = cut_string.Remove(0, idx + 1).Trim();
-                Debug.WriteLine($"{root}/{xpath}[{node.Trim()}={final}]");
+                string final = cut_string.Remove(0, idx + 1);
+
+                List<string> strs = [];
+
+                foreach (var innerItem in final.Split(','))
+                {
+                    strs.Add(innerItem);
+                }
+
+                string res = $"{root}/{xpath}[";
+
+                if (strs.Count < 2) 
+                {
+                    string tmp = strs[0].Contains('!') ? $"{strs[0].Replace("!", "not(")})" : strs[0];
+                    res += $"{node.Trim()}={tmp}";
+                }
+                else 
+                {
+                    bool isRemove = false;
+                    int idx_rem = 0;
+
+                    res += $"{node.Trim()}=";
+                    for (int i = 0; i < strs.Count; i++)
+                    {
+                        if (isRemove) {
+                            res += strs[i].Remove(0, idx_rem+1);
+                            isRemove = false;
+                        } else res += strs[i];
+
+                        if (i != strs.Count-1){
+                            if (strs[i+1].Contains("&")) {
+                                idx_rem = strs[i+1].IndexOf('&');
+                                isRemove = true;
+                                res += " and ";
+                            }
+                            else res += " or ";
+                        }
+                    }
+                }
+
+                res += "]";
+
+                //string res = $"{root}/{xpath}[{node.Trim()}={innerItem.Replace("&", "and")}]";
+                Debug.WriteLine($"{res}");
+
                 continue;
             }
 
@@ -86,10 +130,32 @@ public class LexerAnalyzer
 
                     foreach (var item1 in str.Split(' '))
                     {
-                        items.Add($"{node}={item1.Replace("!", "not(")})");
+                        string elem = string.Empty;
+
+                        if (item1.StartsWith('!'))
+                        {
+                            int i =  item1.IndexOf('!');
+                            if (item1[i+1] != '"') elem = $"{item1.Replace("!", "not(")})";
+                            else {
+                            }
+                        }
+                        else if (item1.StartsWith('"'))
+                        {
+
+                        }
+                        string not_item_str = item1.StartsWith('!') ? $"{item1.Replace("!", "not(")})" : item1;
+                        //items.Add($"{node}={not_item_str}");
+                        Debug.WriteLine($"{node}={not_item_str}");
+                        //Debug.WriteLine(elem);
                     }
 
                     continue;
+                } 
+                else
+                {
+                    string not_item_str = innerItem.StartsWith('!') ? $"{innerItem.Replace("!", "not(")})" : innerItem;
+                    items.Add($"{not_item_str}");
+                    Debug.WriteLine($"{not_item_str}");
                 }
             }
 

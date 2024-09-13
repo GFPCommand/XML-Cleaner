@@ -6,6 +6,10 @@ namespace XML_Cleaner.Commands
 	{
 		public void ClearExtraElements()
 		{
+			// steps
+			// 1. remove nodes by conditions
+			// 2. remove empty lines
+
 			Debug.WriteLine("Clearing");
 		}
 
