@@ -64,16 +64,43 @@ public class LexerAnalyzer
             int idx_z = cut_string.IndexOf(',');
             int idx_u = cut_string.IndexOf('&');
 
-            if (idx_s == -1 || idx_z == -1 || idx_u == -1)
+            if (idx_s == -1 || idx_z == -1)
             {
                 string final = cut_string.Remove(0, idx + 1).Trim();
                 Debug.WriteLine($"{root}/{xpath}[{node.Trim()}={final}]");
                 continue;
             }
 
-            Debug.WriteLine(xpath);
-            Debug.WriteLine(cut_string);
-            Debug.WriteLine(node);
+            var innerItems = cut_string.Split(',');
+
+            List<string> items = new List<string>();
+
+            foreach (var innerItem in innerItems)
+            {
+                int idx_start = innerItem.IndexOf("[");
+                int idx_end = innerItem.IndexOf("]");
+
+                if (idx_start != -1 && idx_end != -1)
+                {
+                    string str = innerItem.Substring(idx_start+1, innerItem.Length-idx_start-2);
+
+                    foreach (var item1 in str.Split(' '))
+                    {
+                        items.Add($"{node}={item1.Replace("!", "not(")})");
+                    }
+
+                    continue;
+                }
+            }
+
+            //string cut = cut_string.Remove(0, idx_s - 1);
+
+
+            //Debug.WriteLine($"{root}/{xpath}[{node.Trim()}={cut}]");
+
+            //Debug.WriteLine(xpath);
+            //Debug.WriteLine(cut_string);
+            //Debug.WriteLine(node);
         }
     }
 }
