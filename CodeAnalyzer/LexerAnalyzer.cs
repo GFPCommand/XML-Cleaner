@@ -59,7 +59,9 @@ public class LexerAnalyzer
             int idx = cut_string.IndexOf('=');
 
             string node = cut_string.Substring(0, idx);
-            
+
+            string multipleConditions = string.Empty;
+
             // most likely need rename
             int idx_s = cut_string.IndexOf('[');
             int idx_z = cut_string.IndexOf(',');
@@ -145,7 +147,7 @@ public class LexerAnalyzer
                         }
                         string not_item_str = item1.StartsWith('!') ? $"{item1.Replace("!", "not(")})" : item1;
                         //items.Add($"{node}={not_item_str}");
-                        Debug.WriteLine($"{node}={not_item_str}");
+                        Debug.WriteLine($"1{node}={not_item_str}");
                         //Debug.WriteLine(elem);
                     }
 
@@ -154,8 +156,8 @@ public class LexerAnalyzer
                 else
                 {
                     string not_item_str = innerItem.StartsWith('!') ? $"{innerItem.Replace("!", "not(")})" : innerItem;
-                    items.Add($"{not_item_str}");
-                    Debug.WriteLine($"{not_item_str}");
+                    items.Add($"{xpath}[{not_item_str}]");
+                    Debug.WriteLine($"2{xpath}[{not_item_str}");
                 }
             }
 
@@ -175,7 +177,7 @@ public class LexerAnalyzer
 // 1. find '['
 // 2. find ']'
 // 3. select string between []
-// 4. split strings in array -> new word after space
+// 4. split strings in array -> new word after space and out of ""
 
 
 // read string from start to '='
@@ -184,15 +186,3 @@ public class LexerAnalyzer
 // read from '>' to '=' -> get conditional node
 // if next char is '[' -> start multiple condition (read above)
 // else if next char is ']' -> error
-
-
-// https://www.google.com/search?q=lexer+analyzer&oq=lexer+analyzer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDQ4NTJqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8
-// https://www.geeksforgeeks.org/introduction-of-lexical-analysis/
-// https://www.google.com/search?q=Lexical+Analysis&sourceid=chrome&ie=UTF-8
-// https://www.tutorialspoint.com/compiler_design/compiler_design_lexical_analysis.htm
-// https://www.tutorialspoint.com/compiler_design/compiler_design_semantic_analysis.htm
-// https://wiki.livid.pp.ru/students/sp/lectures/3.html
-// https://habr.com/ru/articles/663870/
-// https://habr.com/ru/articles/515420/
-// http://prog.tversu.ru/pr3/ex4.pdf
-// http://prog.tversu.ru/pr3/codeStyle.pdf
